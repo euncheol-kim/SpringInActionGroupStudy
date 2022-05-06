@@ -8,11 +8,10 @@
 `Component` 또는 `Bean` 형태로 스프링 컨테이너인 `ApplicationContext` 라는 DI 컨테이너에 올려두고 관리 되는 구조
 
 ---
-
-
+&nbsp;&nbsp;
 
 ### ApplicationContext 와 Bean 등록
-
+&nbsp;
 > 빈을 등록하는 방법은 위와 같이 `annotation` 기반으로 등록하거나 `xml` 파일로 등록할 수 있다.
 위와 같이 스프링 컨테이너에 빈을 등록하면 실제 어플리케이션이 동작할 때 
 의존성 주입 (DI) 을 기반으로 해서 스프링이 관리하는 빈으로 변경되어 수행된다.
@@ -40,7 +39,7 @@ public class AppConfig {
 | userService | UserService@x01 |
 | userRepository | UserRepository@x02 |
 
-
+&nbsp;
 ### 등록한 bean 출력해보기
 
 ```java
@@ -60,7 +59,7 @@ System.out.println("bean = " + bean.getClass());
 
 
 ---
-
+&nbsp;
 ### 빈을 등록하는 예시
 
 - 설정 정보  : `@Configuration`
