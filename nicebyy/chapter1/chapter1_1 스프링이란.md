@@ -4,9 +4,12 @@
 
 # 스프링 구조
 
-**어플리케이션**은 기본적으로 `Components` 간의 상호작용으로 동작하는데 `Component` 또는 `Bean` 형태로 스프링 컨테이너인 `ApplicationContext` 라는 DI 컨테이너에 올려두고 관리 되는 구조
+**어플리케이션**은 기본적으로 `Components` 간의 상호작용으로 동작하는데 
+`Component` 또는 `Bean` 형태로 스프링 컨테이너인 `ApplicationContext` 라는 DI 컨테이너에 올려두고 관리 되는 구조
 
 ---
+
+
 
 ### ApplicationContext 와 Bean 등록
 
@@ -37,6 +40,7 @@ public class AppConfig {
 | userService | UserService@x01 |
 | userRepository | UserRepository@x02 |
 
+
 ### 등록한 bean 출력해보기
 
 ```java
@@ -52,6 +56,8 @@ System.out.println("bean = " + bean.getClass());
 
 `@Autowired` 를 필드, 메서드, 생성자에 붙여줌으로 써 필요한 `Component` 를 주입받을 수 있다.
 > 
+
+
 
 ---
 
