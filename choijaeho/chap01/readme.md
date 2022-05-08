@@ -60,3 +60,6 @@ Web, Thymeleaf 의존성은 일부 다른 의존성도 포함 시킨다<br>
 - 스프링 mvc 를 활성화하기 위해 컨텍스트에 관련된 빈들을 구성한다
 - 내장된 톰캣 서버를 컨텍스트에 구성한다
 - Thymeleaf 템플릿을 사용하는 스프링 MVC 뷰를 나타내기 위해 Thymeleaf 뷰 리졸버를 구성한다
+
+### 블로그 포스트
+https://zeroco.tistory.com/109
