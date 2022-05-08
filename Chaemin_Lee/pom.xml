@@ -11,8 +11,8 @@
     <groupId>sia</groupId>
     <artifactId>taco-cloud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>taco-cloud</name>
-    <description>taco-cloud</description>
+    <name>sia.tacocloud.tacos-cloud</name>
+    <description>sia.tacocloud.tacos-cloud</description>
     <properties>
         <java.version>11</java.version>
     </properties>
