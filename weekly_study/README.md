@@ -1,0 +1,22 @@
+# 스프링인 액션 주차별 정리본
+
+**:book: Contents**
+1. [Chapter 1 스프링 시작하기](./1week)
+2. [Chapter 2 웹 애플리케이션 개발하기](./2week)
+3. [Chapter 3 데이터로 작업하기](./3week)
+4. [Chapter 4 스프링 시큐리티](./4week)
+5. [Chapter 5 구성 속성 사용하기](./5week)
+6. [Chapter 6 REST 서비스 생성하기](./6week)
+7. [Chapter 7 REST 서비스 사용하기](./7week)
+8. [Chapter 8 비동기 메시지 전송하기](./8week)
+9. [Chapter 9 스프링 통합하기](./9week)
+10. [Chapter 10 리액터 개요](./10week)
+11. [Chapter 11 리액티브 API 개발하기](./11week)
+12. [Chapter 12 리액티브 데이터 퍼시스턴스](./12week)
+13. [Chapter 13 서비스 탐구하기](./13week)
+14. [Chapter 14 클라우드 구성 관리](./14week)
+15. [Chapter 15 실패와 지연 처리하기](./15week)
+16. [Chapter 16 스프링 부트 액추에이터 사용하기](./16week)
+17. [Chapter 17 스프링 관리하기](./17week)
+18. [Chapter 18 JMX로 스프링 모니터링하기](./18week)
+19. [Chapter 19 스프링 배포하기](./19week)
