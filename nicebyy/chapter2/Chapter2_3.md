@@ -3,7 +3,7 @@
 
 # Validation 개요
 
-
+&nbsp;
 
 > 사용자가 만약 특정 로직을 수행 했는데 잘못된 입력으로 인해 어플리케이션이 오작동을 하면 안된다. 그러므로 **검증**을 통해 처리해 줘야 함.
 > 
@@ -24,11 +24,11 @@ org.springframework.boot:spring-boot-starter-validation'
 - `hibernate` validator : [공식문서](https://docs.jboss.org/hibernate/validator/6.2/reference/en-US/html_single/#section-builtin-constraints)
 
 > `@Valid` 는 annotation 이 javax 표준 검증기이고 컨트롤러 메소드 유효성 검사만 가능.
-`@Validated` 는 Spring 에서 지원해주는 검증기이고 다른 계증에서도 사용이 가능. (AOP기반)
-
-`LocalValidatorFactoryBean` 이 annotation을 보고 검증을 수행.
+>`@Validated` 는 Spring 에서 지원해주는 검증기이고 다른 계증에서도 사용이 가능. (AOP기반)
+>
+>`LocalValidatorFactoryBean` 이 annotation을 보고 검증을 수행.
 실무에선 대부분 hibernate 의 validator를 사용한다고 한다.
-> 
+&nbsp; 
 
 ## 검사 규칙 선언하기 예시
 
@@ -95,7 +95,7 @@ public class Taco {
 ```
 
 `@CreditCardNumber` 와 같은 검증은 hibernate 의 validator가 수행한다는 것을 알 수 있다.
-
+&nbsp;
 # 폼과 바인딩 그리고 검증
 
 
@@ -135,6 +135,7 @@ public class Taco {
 2022-05-15 02:27:18.455 ERROR 11824 --- [nio-8080-exec-1] s.tacos.web.controller.OrderController   : Must be formatted MM/YY
 2022-05-15 02:27:18.456 ERROR 11824 --- [nio-8080-exec-1] s.tacos.web.controller.OrderController   : Not a valid credit card number
 ```
+&nbsp;
 
 # 만약 검증에 실패한다면
 
