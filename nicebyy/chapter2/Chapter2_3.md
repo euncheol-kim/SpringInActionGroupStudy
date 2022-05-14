@@ -1,13 +1,11 @@
 
 # Chapter2.3 폼 입력 유효성 검사하기
-
-# Validation 개요
-
 &nbsp;
+# Validation 개요
 
 > 사용자가 만약 특정 로직을 수행 했는데 잘못된 입력으로 인해 어플리케이션이 오작동을 하면 안된다. 그러므로 **검증**을 통해 처리해 줘야 함.
 > 
-
+&nbsp;
 # Validation 사용
 
 
@@ -28,8 +26,8 @@ org.springframework.boot:spring-boot-starter-validation'
 >
 >`LocalValidatorFactoryBean` 이 annotation을 보고 검증을 수행.
 실무에선 대부분 hibernate 의 validator를 사용한다고 한다.
-&nbsp; 
 
+&nbsp;
 ## 검사 규칙 선언하기 예시
 
 ```java
@@ -95,7 +93,8 @@ public class Taco {
 ```
 
 `@CreditCardNumber` 와 같은 검증은 hibernate 의 validator가 수행한다는 것을 알 수 있다.
-&nbsp;
+
+&nbsp;&nbsp;
 # 폼과 바인딩 그리고 검증
 
 
