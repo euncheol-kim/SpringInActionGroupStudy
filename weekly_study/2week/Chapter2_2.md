@@ -163,8 +163,11 @@ public class ThymeleafViewResolverConfig {
 #### 1. 서버사이드 HTML 렌더링(SSR)
 - 타임리프는 백엔드 서버에서 HTML을 동적으로 렌더링하는 용도로 사용됨.
 - 사용법은 SSR이 다 비슷해 학습하기 어렵지 않고, 페이지가 정적이고 빠른 생산성이 필요한 경우 백엔드 개발자가 페이지개발할 일이 생길때 좋은 선택
+
+
 #### 2. 네츄럴 템플릿
 - 순수 HTML을 최대한 유지하려는 특징, JSP와 큰 차이점. 웹브라우저에서 직접 열어도 내용확인이 가능
+- 
 #### 3. 스프링 통합 지원
 - 스프링과 자연스럽게 통합되어 스프링의 다양한 기능을 쉽게 사용할 수 있다.
 - SpringEL 문법 통합, 스프링 Validation, 오류 처리 등등 
@@ -263,11 +266,11 @@ https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html#the-springstand
 @Data
 public class Order {
 
-	private String name;
-	private String street;
-	private String city;
-	private String state;
-	private String zip;
+	private String deliverName;
+	private String deliverStreet;
+	private String deliverCity;
+	private String deliverState;
+	private String deliverZip;
 	private String ccNumber;
 	private String ccExpiration;
 	private String ccCVV;
