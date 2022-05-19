@@ -1,45 +1,50 @@
 package springinaction.tacos.web.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import springinaction.tacos.entity.Ingredient;
-import springinaction.tacos.entity.Taco;
-import springinaction.tacos.entity.Type;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.extern.slf4j.Slf4j;
+
 
 import javax.validation.Valid;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+
+import org.springframework.validation.Errors;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import springinaction.tacos.domain.entity.Ingredient;
+import springinaction.tacos.domain.entity.Order;
+import springinaction.tacos.domain.entity.Taco;
+import springinaction.tacos.domain.repository.IngredientRepository;
+import springinaction.tacos.domain.repository.TacoRepository;
+
+import static springinaction.tacos.domain.entity.Ingredient.*;
 
 @Slf4j
 @Controller
 @RequestMapping("/design")
+@SessionAttributes("order")
+@RequiredArgsConstructor
 public class DesignTacoController {
+
+    private final IngredientRepository ingredientRepository;
+    private final TacoRepository tacoRepository;
+
 
     @GetMapping
     public String showDesignForm(Model model) {
-        List<Ingredient> ingredients = Arrays.asList(
-                new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
-                new Ingredient("COTO", "Corn Tortilla", Type.WRAP),
-                new Ingredient("GRBF", "Ground Beef", Type.PROTEIN),
-                new Ingredient("CARN", "Carnitas", Type.PROTEIN),
-                new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES),
-                new Ingredient("LETC", "Lettuce", Type.VEGGIES),
-                new Ingredient("CHED", "Cheddar", Type.CHEESE),
-                new Ingredient("JACK", "Monterrey Jack", Type.CHEESE),
-                new Ingredient("SLSA", "Salsa", Type.SAUCE),
-                new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
-        );
+        List<Ingredient> ingredients = new ArrayList<>(ingredientRepository.findAll());
 
         Type[] types = Type.values();
-
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),
                     filterByType(ingredients, type));
@@ -50,26 +55,33 @@ public class DesignTacoController {
         return "design";
     }
 
-    private List<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
+    private List<Ingredient> filterByType(
+            List<Ingredient> ingredients, Type type) {
         return ingredients
                 .stream()
                 .filter(x -> x.getType().equals(type))
                 .collect(Collectors.toList());
     }
 
-    @PostMapping
-    public String processDesign(@Valid Taco design, Errors errors) {
-        if (errors.hasErrors()) {
-            List<FieldError> list = errors.getFieldErrors();
-            list.forEach(e->log.error(e.getDefaultMessage()));
+    @ModelAttribute(name = "order")
+    public Order order() {
+        return new Order();
+    }
 
+    @ModelAttribute(name = "taco")
+    public Taco taco() {
+        return new Taco();
+    }
+
+    @PostMapping
+    public String processDesign(@Valid Taco design, Errors errors, @ModelAttribute Order order) {
+        if (errors.hasErrors()) {
             return "design";
         }
 
-        // 이 지점에서 타코 디자인(선택된 식자재 내역)을 저장한다…
-        // 이 작업은 3장에서 할 것이다.
-        log.info("Processing design: " + design);
+        Taco saved = tacoRepository.save(design);
+        order.addDesign(saved);
+
         return "redirect:/orders/current";
     }
-
 }

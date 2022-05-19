@@ -4,7 +4,7 @@
 <head>
     <meta charset="EUC-KR">
     <title>Taco Cloud</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
 </head>
 
 <body>
@@ -67,9 +67,8 @@
     <div>
         <h3>Name your taco creation:</h3>
         <input type="text" th:field="*{name}"/>
-        <span
-                class="validationError" th:if="${#fields.hasErrors('name')}"
-                th:errors="*{name}">Name Error</span>
+        <span class="validationError" th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}">Name Error</span>
         <br/>
         <button>Submit your taco</button>
     </div>
