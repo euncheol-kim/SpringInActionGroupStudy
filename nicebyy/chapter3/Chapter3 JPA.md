@@ -15,4 +15,4 @@
 
 현재 Java 진형의 ORM 표준으로 인터페이스이고 구현체는 Hibernate, EclipseLink, DataNucleus 등 
 
-![Untitled](Chapter3%20JPA%2005e5567f87de49bb8d5054d705a98017/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/45655434/169584571-561a4445-2b0c-430a-bb31-7fe6362a2ee1.png)
