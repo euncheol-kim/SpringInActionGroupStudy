@@ -1,27 +1,63 @@
+----
 
 
-### 학습목표
+
+### **👨‍👨‍👦‍👦 SpringInAction Group Study [이채민, 권태구, 최재호, 곽현기, 김은철]**
+
+**group - GIT : https://github.com/euncheol-kim/SpringInActionGroupStudy**
+
+<br>
+
+#### **이채민 님 : https://github.com/CokeLee777**
+
+#### **권태구 님 : https://github.com/Hashtae9**
+
+#### **최재호 님 : https://github.com/jaero0725**
+
+#### **곽현기 님 : https://github.com/nicebyy**
+
+#### **김은철 (본인): https://github.com/euncheol-kim**
+
+<br>
+
+#### 작성자 : 김은철 
+
+<br>
+
+-----
+
+<br>
+
+<br>
+
+### goal
 
 > jdbc 프레임워크인 mybatis와 Database(mySQL)을 이용해 기본적인 CRUD를 이해한다.
+>
+> - mybatis 프로젝트 설명
+> - mybatis_2 프로젝트 설명
+> - mybatis이론
 
+<br>
 
-
- **Euncheol-Kim 원격브랜치 실습 프로젝트 파일 구성**
+<br> **Euncheol-Kim 원격브랜치 실습 프로젝트 파일 구성**
 
 | 프로젝트명 | 설명                                                         |
 | ---------- | ------------------------------------------------------------ |
 | mybatis    | class 내부에서의 데이터 생성/삭제/수정/저거의 RestAPI <u>(JDBC 프로그래밍은 아님)</u> |
 | mybatis_2  | 데이터베이스 연결 및 mabatis를 이용한 RestAPI CRUD           |
 
+<br>
 
+<br>
 
-#  파일명 : mybatis
+#  1. 파일명 : mybatis
 
 ## [1] 개요
 
 > <u>Database를 연결하지 않고</u> **class 내부에서의 데이터 생성 / 삭제 / 수정 / 제거의 RestAPI를 생성한다.**
 
-
+<br>
 
 ## [2] 프로젝트 생성시 종속성 설정
 
@@ -31,7 +67,7 @@
 - Spring Boot DevTools
 - MySQL Driver
 
-
+<br>
 
 ## [3] 설정구성
 
@@ -39,6 +75,8 @@
 | ----------------------- | -------------------------- | ----------------------------------- |
 | src/main/java/resources | **application.properties** | mysql드라이버 설정 및 mysql 연결    |
 |                         | **pom.xml**                | jdbc의존성설정<br />mySQL의존성설정 |
+
+<br>
 
 - **pom.xml**
 
@@ -57,7 +95,7 @@
 </dependency>
 ```
 
-
+<br>
 
 - **application.properties**
 
@@ -77,11 +115,16 @@ spring.datasource.password=1234
 
 ```
 
-#### 
+<br>
+
+<br> 
 
 #### * 설정을하며 해결이 되지 않았던 궁금증
 
-mysql을 사용하지 않는 실습이라 `pom.xml`의 <u>mysql dependency 삭제</u> `application.properties`의 jdbc를 제외한 모든 내용을 삭제하고 실행했더니 `error`가 나왔습니다. 제가 생각하기엔 mysql과 관련된 내용의 의존성을 지워주고 서비스를 실행했을 때, 문제 없이 동작해야하는 것 아닌가요?
+mysql을 사용하지 않는 실습이라 `pom.xml`의 <u>mysql dependency 삭제</u> `application.properties`의 jdbc를 제외한 모든 내용을 삭제하고 실행했더니 `error`가 나왔습니다. 
+<br><br>
+
+제가 생각하기엔 mysql과 관련된 내용의 의존성을 지워주고 서비스를 실행했을 때, 문제 없이 동작해야하는 것 아닌가요?
 
 
 
@@ -92,7 +135,7 @@ mysql을 사용하지 않는 실습이라 `pom.xml`의 <u>mysql dependency 삭�
 | src/main/java/**<u>com.example.mybatis</u>** | UserController.java | RestFull CRUD의 기능을 담은 파일 |
 | src/main/java/**<u>mybatis.model</u>**       | User                | Model                            |
 
-
+<br>
 
 - User.java
 
@@ -119,7 +162,7 @@ public class User {
 }
 ```
 
-
+<br>
 
 - UserController.java
 
@@ -183,7 +226,7 @@ public class UserController {
 
 ```
 
-
+<br>
 
 - **@PathVariable** 
 
@@ -191,7 +234,7 @@ public class UserController {
 >
 > 사용자 입력("id"에 해당)을 id매개변수로 받아와 내부적으로 처리
 
-
+<br>
 
 - **@RequestParam**
 
@@ -199,11 +242,11 @@ public class UserController {
 >
 > 객체의 데이터를 받아오기 위해 사용한다.
 
+<br>
 
+<br>
 
-
-
-#  파일명 : mybatis_2 
+#  2. 파일명 : mybatis_2 
 
 ## [1] 개요
 
@@ -212,7 +255,7 @@ public class UserController {
 - mybatis frameowrk = ORM framework (객체와 관계형 데이터를 매핑하기 위한 기술)
 - mabatis는 자바 오브젝트와 SQL사이의 자동 매핑 기능을 지원한다.
 
-
+<br>
 
 ## [2] 프로젝트 생성시 종속성 설정
 
@@ -222,7 +265,7 @@ public class UserController {
 - Spring Boot DevTools
 - MySQL Driver
 
-
+<br>
 
 ## [3] 설정구성
 
@@ -231,7 +274,7 @@ public class UserController {
 | src/main/java/resources | **application.properties** | mysql드라이버 설정 및 mysql 연결    |
 |                         | **pom.xml**                | jdbc의존성설정<br />mySQL의존성설정 |
 
-
+<br>
 
 - **pom.xml**
 
@@ -250,9 +293,9 @@ public class UserController {
 </dependency>
 ```
 
+<br>
 
-
-- **application.properties**
+- **application.properties** <u>\<enviroment></u>
 
 ```properties
 # Load the mysql driver (Database 종류마다 우측에 들어가는 내용이 상이)
@@ -269,7 +312,9 @@ spring.datasource.password=1234
 
 ```
 
-#### 
+<br>
+
+<br> <br>
 
 ## [4] mybatis_2의 파일 구성
 
@@ -279,9 +324,11 @@ spring.datasource.password=1234
 | src/main/java/**<u>mybatis.model</u>**       | User                | Model                                       |
 | src/main/java/**<u>mapper</u>**              | UserMapper          | mybatis framework를 이용해 구성한 interface |
 
+<br>
 
+<br>
 
-- User.java
+- User.java <u>\<typeAlias 설정></u>
 
 ```java
 package mybatis.model;
@@ -306,9 +353,9 @@ public class User {
 
 ```
 
+<br>
 
-
-- UserMapper.java
+- UserMapper.java <u><mapper등록></u>
 
 ```java
 package com.example.mybatis_2.mapper;
@@ -344,13 +391,13 @@ public interface UserMapper {
 
 > 관계형 데이터베이스(RDBMS)를 자바의 객체 지향 모델로 매핑하게 도와주는 인터페이스다. 
 
-
+<br>
 
 - #{....}
 
 > 사용자의 입력값을 객체와 데이터베이스를 매핑시키기 위해서 사용한다.
 
-
+<br>
 
 - @Param
 
@@ -361,7 +408,7 @@ public interface UserMapper {
 >
 > @Param어노테이션 덕분에 매개변수 id가 #{id}에 매핑이 된다.
 
-
+<br>
 
 - UserController.java
 
@@ -413,3 +460,39 @@ public class UserController {
 - @PathVariable
 
 > mabatis 프로젝트에 설명
+
+
+
+<br><br><br>
+
+# 3. mybatis3 framework 이론
+
+## [1] mybatis3 란?
+
+데이터베이스 프로그래밍을 좀 더 쉽게 할 수 있게 도와주는 프레임워크
+
+- 기존 JDBC(자바 프로그램이 데이터베이스와 연결되어 데이터를 주고 받을 수 있게 해주는 프로그래밍 인터페이스)를 조금 더 쉽고 유연하고 편하게 사용하기 위해 개발되었다.
+
+
+
+## [2] mybatis3 의 장점
+
+- 프로그램 코드와 <u>SQL쿼리의 분리</u>로 코드의 간결성 및 유지보수성 향상
+- 빠른 개발이 가능하며 생산성이 향상된다.
+
+
+
+## [3] mybatis3 구조
+
+![image](https://user-images.githubusercontent.com/72078208/169668693-bfdace9a-ac87-4330-98e6-7093fdaafad4.png)
+
+#### mybatis3의 구성
+
+![image](https://user-images.githubusercontent.com/72078208/169668855-b5e1933c-dcb4-4ea7-ae7f-9da9172a17e4.png)
+
+<br>
+
+<br>
+
+**<u>mybatis3의 구성</u>**은 괜히 말만 어려운것 같습니다.
+ [typeAlias](./1), [enviroment](./2), [mapper](./3) 설명에 해당되는 코드들이니 확인하시면 좋을 것 같습니다.
