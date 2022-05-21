@@ -1,10 +1,24 @@
+----
+
+
+
+### **👨‍👨‍👦‍👦 SpringInAction Group Study [이채민, 권태구, 최재호, 곽현기, 김은철]**
+
+**group - GIT : https://github.com/euncheol-kim/SpringInActionGroupStudy**
+
 <br>
 
----
+#### **이채민 님 : https://github.com/CokeLee777**
+
+#### **권태구 님 : https://github.com/Hashtae9**
+
+#### **최재호 님 : https://github.com/jaero0725**
+
+#### **곽현기 님 : https://github.com/nicebyy**
+
+#### **김은철 (본인): https://github.com/euncheol-kim**
 
 <br>
-
-### SpringInAction Group Study
 
 #### 작성자 : 김은철 
 
@@ -80,9 +94,9 @@
 
 그러나 애플리케이션이 실무 운영을 위해 배포될 때는 DevTools 자신이 비활성화 되므로 템플릿 캐싱이 활성화 될 수 있다.<br>
 
+<br>
 
-
-
+<br>
 
 <h1 style="color:blue">추가자료</h1>
 
