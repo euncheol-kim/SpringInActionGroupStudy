@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import sia.tacocloud.tacos.Ingredient;
 import sia.tacocloud.tacos.Order;
 import sia.tacocloud.tacos.Taco;
+import sia.tacocloud.tacos.User;
 import sia.tacocloud.tacos.data.IngredientRepository;
 import sia.tacocloud.tacos.data.TacoRepository;
+import sia.tacocloud.tacos.data.UserRepository;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +31,7 @@ public class DesignTacoController {
 
     private final IngredientRepository ingredientRepository;
     private final TacoRepository tacoRepository;
+    private final UserRepository userRepository;
 
     @ModelAttribute(name = "order")
     public Order order(){
@@ -39,15 +43,8 @@ public class DesignTacoController {
         return new Taco();
     }
 
-    // TODO : 왜 위의 코드랑 동일하게 동작하지 않지?
-//    @ModelAttribute
-//    public void addAttributes(Model model){
-//        model.addAttribute("order", new Order());
-//        model.addAttribute("taco", new Taco());
-//    }
-
     @GetMapping
-    public String showDesignForm(Model model){
+    public String showDesignForm(Model model, Principal principal){
         // TODO : 식자재 데이터를 모두 조회해서 리스트에 담기
         List<Ingredient> ingredients = new ArrayList<>();
         ingredientRepository.findAll().forEach(ingredients::add);
@@ -59,11 +56,15 @@ public class DesignTacoController {
                     filterByType(ingredients, type));
         }
 
+        String username = principal.getName();
+        User user = userRepository.findByUsername(username).orElse(null);
+        model.addAttribute("user", user);
+
         return "design";
     }
 
     @PostMapping
-    public String processDesign(@Valid Taco design, Errors errors, @ModelAttribute Order order){
+    public String processDesign(@Valid @ModelAttribute Taco design, @ModelAttribute Order order, Errors errors){
         if(errors.hasErrors()){
             return "design";
         }

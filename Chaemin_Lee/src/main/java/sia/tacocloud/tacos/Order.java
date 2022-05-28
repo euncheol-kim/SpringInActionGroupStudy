@@ -1,6 +1,7 @@
 package sia.tacocloud.tacos;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import javax.persistence.*;
@@ -12,21 +13,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Getter
+@Getter @Setter
 @Entity
 @Table(name = "Taco_Order")
-@TableGenerator(
-        name = "TACO_ORDER_SEQ_GENERATOR",
-        table = "MY_SEQUENCES",
-        pkColumnValue = "TACO_SEQ", allocationSize = 1
-)
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id @GeneratedValue(strategy = GenerationType.TABLE, generator = "TACO_ORDER_SEQ_GENERATOR")
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Date placedAt;
+
+    @ManyToOne
+    private User user;
 
     @NotBlank(message = "Name is required")
     private String deliveryName;
@@ -43,7 +42,7 @@ public class Order implements Serializable {
     @NotBlank(message = "Zip code is required")
     private String deliveryZip;
 
-    @CreditCardNumber(message = "Not a valid credit card Number")
+//    @CreditCardNumber(message = "Not a valid credit card Number")
     private String ccNumber;
 
     @Pattern(regexp = "^(0[1-9]|1[0-2])([\\/])([1-9][0-9])$",
