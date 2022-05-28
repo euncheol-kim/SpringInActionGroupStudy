@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/taco
+    url: jdbc:h2:tcp://localhost/D:/db/h2/taco
     username: sa
     password:
     driver-class-name: org.h2.Driver
@@ -13,6 +13,8 @@ spring:
         # show_sql: true
         format_sql: true
 #        default_batch_fetch_size : 100
+    defer-datasource-initialization: true
+
 
 logging.level:
   org.hibernate.SQL: debug

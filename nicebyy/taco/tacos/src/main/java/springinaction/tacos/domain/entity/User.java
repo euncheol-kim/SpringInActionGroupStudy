@@ -1,25 +1,63 @@
 package springinaction.tacos.domain.entity;
 
-import lombok.*;
+import java.io.Serial;
+import java.util.Arrays;
+import java.util.Collection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import javax.persistence.*;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
-@Setter @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+@Data
+@NoArgsConstructor(access=AccessLevel.PUBLIC, force=true)
+@RequiredArgsConstructor
+public class User implements UserDetails {
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
-    Long id;
-    String name;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
 
-    @JoinColumn(name = "team_id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    Team team;
+    private final String username;
+    private final String password;
+    private final String fullname;
+    private final String street;
+    private final String city;
+    private final String state;
+    private final String zip;
+    private final String phoneNumber;
 
-    public User(String name) {
-        this.name = name;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
+
