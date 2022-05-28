@@ -2,12 +2,12 @@
 
 ### WebSecurityConfigurerAdapter
 
-> SpringSecutiry 의존성을 추가하게 되면 기본적으로 WebSecurityConfigurerAdapter 클래스가 실행.
-WebSecurityConfigurerAdapter 는 SpringSecutiry 의 웹(http) 보안 기능 초기화 및 설정들을 당담하는 내용이 담겨있고 인증/인가 관련 설정을 제공.
+> SpringSecutiry 의존성을 추가하게 되면 기본적으로 `WebSecurityConfigurerAdapter` 클래스가 실행.
+> `WebSecurityConfigurerAdapter` 는 SpringSecutiry 의 웹(http) 보안 기능 초기화 및 설정들을 당담하는 내용이 담겨있고 인증/인가 관련 설정을 제공.
 > 
 
 ![Untitled](https://user-images.githubusercontent.com/45655434/170840377-7d349cc9-87bc-4a48-abef-b225db0c18e3.png)
-
+&nbsp;
 configure() 메서드를 Override 하여 설정정보를 구성할 수 있다.
 
 ```java
@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 }
 ```
-
+&nbsp;
 ### 참고 (구성 메소드)
 
 | 메소드 | 하는 일 |
@@ -77,6 +77,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 | isRememberMe() | 해당 사용자가 remember-me 기능으로 인증되었으면 true |
 | permitAll | 항상 true를 산출한다. |
 | principal | 해당 사용자의 principal 객체 |
+
+&nbsp;
 
 # 사용자 스토어 구성
 
@@ -170,7 +172,7 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 ### 커스텀 사용자 명세 서비스
 
 > 스프링에 내장된 사용자 스토어 외 사용자 명세 서비스를 커스터마이징해서 사용이 가능
-UserDetails 를 구현받는 엔티티를 생성해야함.
+> `UserDetails` 를 구현받는 엔티티를 생성해야함.
 > 
 
 ```java
@@ -234,7 +236,7 @@ public class User implements UserDetails {
 }
 ```
 
-### UserDetails
+### 참고: UserDetails
 
 | 메소드명 | 리턴타입 | 설명 |
 | --- | --- | --- |
@@ -331,7 +333,7 @@ public class RegistrationController {
 
 # password 암호화
 
-> SpringSecurity5부터 의무적으로 PasswordEncoder를 이용하여 암호화를 하지 않으면 오류가 발생함.  암호화를 하면 DB에 저장될 때 암호화된 password가 저장이 됨.
+> SpringSecurity5부터 의무적으로 `PasswordEncoder`를 이용하여 암호화를 하지 않으면 오류가 발생함.  암호화를 하면 DB에 저장될 때 암호화된 password가 저장이 됨.
 > 
 
 암호화된 사용자정보
@@ -342,11 +344,11 @@ public class RegistrationController {
 
 ### SpringSecutiry 암호화 모듈
 
-- BCryptPasswordEncoder : bcrypt 해싱
-- NoOpPasswordEncoder : 암호화 x
-- Pbkdf2PasswordEncoder : PBKDF2 암호화
-- SCryptPasswordEncoder : scrypt 해싱
-- StandardPasswordEncoder : SHA-256
+- `BCryptPasswordEncoder` : bcrypt 해싱
+- `NoOpPasswordEncoder` : 암호화 x
+- `Pbkdf2PasswordEncoder` : PBKDF2 암호화
+- `SCryptPasswordEncoder` : scrypt 해싱
+- `StandardPasswordEncoder` : SHA-256
 
 ```java
 public class NoEncodingPasswordEncoder implements PasswordEncoder {
