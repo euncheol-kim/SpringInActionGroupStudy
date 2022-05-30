@@ -1,6 +1,6 @@
 package sia.tacocloud.tacos;
 
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,16 +8,15 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
-@Getter
+@Getter @Setter
 @Entity
-@SequenceGenerator(name = "taco_seq_generator", sequenceName = "taco_seq")
 public class Taco {
 
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "taco_seq_generator")
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Date createdAt;
 
-    @NotNull
+    @NotNull(message = "이름은 5글자 이상 입력해주세요")
     @Size(min = 5, message = "Name must be at least 5 characters long")
     private String name;
 
