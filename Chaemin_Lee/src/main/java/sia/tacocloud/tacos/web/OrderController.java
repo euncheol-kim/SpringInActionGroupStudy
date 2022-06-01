@@ -2,6 +2,8 @@ package sia.tacocloud.tacos.web;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import sia.tacocloud.tacos.User;
 import sia.tacocloud.tacos.data.OrderRepository;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Slf4j
 @Controller
@@ -22,6 +25,7 @@ import javax.validation.Valid;
 public class OrderController {
 
     private final OrderRepository orderRepository;
+    private final OrderProps orderProps;
 
     // TODO : 주문 폼 가져오기
     @GetMapping("/current")
@@ -61,5 +65,14 @@ public class OrderController {
         sessionStatus.setComplete();
 
         return "redirect:/";
+    }
+
+    // TODO : 일정 개수의 페이지만큼 최신순으로 회원의 주문들 조회
+    @GetMapping
+    public String ordersForUser(@AuthenticationPrincipal User user, Model model){
+        Pageable pageable = PageRequest.of(0, orderProps.getPageSize());
+        model.addAttribute("orders", orderRepository.findByUserOrderByPlacedAtDesc(user, pageable));
+
+        return "orderList";
     }
 }

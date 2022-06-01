@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import sia.tacocloud.tacos.Ingredient;
 import sia.tacocloud.tacos.Taco;
 import sia.tacocloud.tacos.data.IngredientRepository;
@@ -24,6 +25,7 @@ public class TacoCloudApplication {
 
     // TODO : 애플리케이션 시작과 동시에 데이터를 DB에 미리 저장
     @Bean
+    @Profile("!prod")
     public CommandLineRunner dataLoader(IngredientRepository repo){
         return new CommandLineRunner() {
             @Override
