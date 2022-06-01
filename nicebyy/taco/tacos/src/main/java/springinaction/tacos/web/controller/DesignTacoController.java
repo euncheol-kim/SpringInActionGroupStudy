@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +25,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import springinaction.tacos.domain.entity.Ingredient;
 import springinaction.tacos.domain.entity.Order;
 import springinaction.tacos.domain.entity.Taco;
+import springinaction.tacos.domain.entity.User;
 import springinaction.tacos.domain.repository.IngredientRepository;
 import springinaction.tacos.domain.repository.TacoRepository;
+import springinaction.tacos.domain.repository.UserRepository;
 
 import static springinaction.tacos.domain.entity.Ingredient.*;
 
@@ -37,11 +40,12 @@ import static springinaction.tacos.domain.entity.Ingredient.*;
 public class DesignTacoController {
 
     private final IngredientRepository ingredientRepository;
-    private final TacoRepository tacoRepository;
+    private final TacoRepository tacoRepository;    
+    private final UserRepository userRepository;
 
 
     @GetMapping
-    public String showDesignForm(Model model) {
+    public String showDesignForm(Model model, @AuthenticationPrincipal User user) {
         List<Ingredient> ingredients = new ArrayList<>(ingredientRepository.findAll());
 
         Type[] types = Type.values();
@@ -50,8 +54,8 @@ public class DesignTacoController {
                     filterByType(ingredients, type));
         }
 
-        model.addAttribute("taco", new Taco());
-
+//        model.addAttribute("taco", new Taco());
+        model.addAttribute("user",user);
         return "design";
     }
 

@@ -1,12 +1,16 @@
 package springinaction.tacos.security;
 
 
+import lombok.Builder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.Data;
 import springinaction.tacos.domain.entity.User;
 
+import java.util.stream.IntStream;
+
 
 @Data
+@Builder
 public class RegistrationForm {
 
 	private String username;
