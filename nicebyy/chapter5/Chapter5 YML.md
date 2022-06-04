@@ -190,10 +190,10 @@ application.yml
 ```yaml
 spring:
   datasource:
-		url: jdbc:mariadb://localhost:3306/shop?serverTimezone=Asia/Seoul
-		username: root
-		password: 1234
-		driver-class-name: org.mariadb.jdbc.Driver
+      url: jdbc:mariadb://localhost:3306/shop?serverTimezone=Asia/Seoul
+      username: root
+      password: 1234
+      driver-class-name: org.mariadb.jdbc.Driver
 ```
 
 application-prod.yml
@@ -201,13 +201,13 @@ application-prod.yml
 ```yaml
 spring:
   datasource:
-		url: jdbc:mariadb://localhost:3306/shop?serverTimezone=Asia/Seoul
-		username: root
-		password: 1234
-		driver-class-name: org.mariadb.jdbc.Driver
-	jpa:
-		hibernate:
-			ddl-auto: none
+      url: jdbc:mariadb://localhost:3306/shop?serverTimezone=Asia/Seoul
+      username: root
+      password: 1234
+      driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
 ```
 
 application-test.yml
@@ -215,10 +215,10 @@ application-test.yml
 ```yaml
 spring:
   datasource:
-		url: jdbc:h2:mem:test
-		username: sa
-		password: 
-		driver-class-name: org.h2.Driver
+      url: jdbc:h2:tcp://localhost/D:/db/h2/taco
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
 ```
 &nbsp;
 ## properties vs yml
