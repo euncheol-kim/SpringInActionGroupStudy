@@ -20,11 +20,11 @@ spring:
 #        default_batch_fetch_size : 100
     defer-datasource-initialization: true
 
-
 logging.level:
   org.hibernate.SQL: debug
-#   org.hibernate.type: trace
 server:
   port: 8080
 
-
+taco:
+  orders:
+    pageSize: 10
