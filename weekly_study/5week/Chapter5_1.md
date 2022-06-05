@@ -184,6 +184,17 @@ java에서 사용하는 프레임워크
 - log4j.jar 먼저나오고, slf4j가 나중에나온 부분  -> adaptaion layer가 필요함. 
 => logback 만 넣어주면, 의존된거 알아서 추가해줌 
 
+### logger마다 레벨이 있음.
+- Trace < Debug < Info < Warn < Error 
+- 레벨 할당 x -> 레벨이있는 가장 가까운 조상으로 상속 받음 (Level Inheritance)
+- root logger에서 부터 시작됨. 
+- effective level이 중요함. 
+
+![image](https://user-images.githubusercontent.com/55049159/172031549-64f90ce0-6c18-4256-aee7-c3d2dc2f5c18.png)
+![image](https://user-images.githubusercontent.com/55049159/172031552-363cb6f4-7ac1-489e-90f4-0f10256dcd6e.png)
+![image](https://user-images.githubusercontent.com/55049159/172031581-894d873a-a2f4-4e7c-bbc1-dc82eb5a6076.png)
+
+
 ## 5.1.5 다른 속성의 값을 가져오기
 
 
