@@ -1,0 +1,30 @@
+spring:
+  # DataSource 구성 속성
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/taco
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+  # View 구성 속성
+  thymeleaf:
+    cache: false
+# logging level 구성 속성
+logging:
+  level:
+    tacos: DEBUG
+#    org.hibernate.SQL: debug
+#    org.springframework.security: debug
+
+# 커스텀 구성 속성
+taco:
+  orders:
+    pageSize: 10
