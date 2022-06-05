@@ -194,6 +194,7 @@ java에서 사용하는 프레임워크
 ![image](https://user-images.githubusercontent.com/55049159/172031552-363cb6f4-7ac1-489e-90f4-0f10256dcd6e.png)
 ![image](https://user-images.githubusercontent.com/55049159/172031581-894d873a-a2f4-4e7c-bbc1-dc82eb5a6076.png)
 
+![image](https://user-images.githubusercontent.com/55049159/172031628-74664e5f-055f-4773-b0df-7d551062b3c5.png)
 
 ## 5.1.5 다른 속성의 값을 가져오기
 
