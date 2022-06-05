@@ -164,7 +164,7 @@ Logging이란 어디다가 message에 기록하는 것이다. (console, files, d
 - logging 은 message마다 등급을 주어서 어느정도 레벨의 메시지만 출력할 수 있게 한다.
 - 모든 log를 출력하면 너무 많이 나올 수 있으니깐 개발자가 기준을 사용함. (priority Level)
 - 리소스를 많이 먹음. 
-- 
+
 ### Logging Frameworks 
 java에서 사용하는 프레임워크
 - java.util.logging - 잘 사용 x
