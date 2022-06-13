@@ -1,5 +1,6 @@
 package springinaction.tacos.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 

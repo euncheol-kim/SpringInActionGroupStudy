@@ -6,22 +6,26 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import springinaction.tacos.domain.entity.Order;
+import springinaction.tacos.domain.entity.Taco;
 import springinaction.tacos.domain.entity.User;
 import springinaction.tacos.domain.repository.OrderRepository;
+import springinaction.tacos.domain.repository.TacoRepository;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @Slf4j
@@ -70,6 +74,7 @@ public class OrderController {
         return "redirect:/";
     }
 
+
     @GetMapping
     public String ordersForUser(@AuthenticationPrincipal User user,Model model){
 
@@ -78,6 +83,8 @@ public class OrderController {
         model.addAttribute("orders",
                 orderRepository.findByUserOrderByPlacedAtDesc(user,pageable));
 
+
         return "orderList";
     }
+    
 }
