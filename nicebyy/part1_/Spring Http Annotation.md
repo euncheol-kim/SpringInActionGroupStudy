@@ -169,7 +169,7 @@ ex) [www.tacocloud.com/](http://www.taco.com/)taco/1
 
 위와 같이 쿼리 스트링 형식이 아닌 경로에 포함된 변수로서 사용이 가능
 &nbsp;
-## `@RedirectAttributes`
+## `RedirectAttributes`
 
 > 요청한 데이터와 관련되거나 포함된 URL을 다시 redirect해서 보여줄때 사용한다. 예를들어 PRG (post redirect get ) 방식으로 다시 Get을 요청 하게 만들 때 사용함
 > 
