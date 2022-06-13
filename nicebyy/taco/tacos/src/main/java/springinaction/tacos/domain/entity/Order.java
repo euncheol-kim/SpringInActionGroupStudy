@@ -16,10 +16,12 @@ import java.util.List;
 
 @Data
 @Entity
+@Getter
 @Table(name = "Taco_Order")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -51,7 +53,7 @@ public class Order implements Serializable {
 //    @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
     private String ccCVV;
 
-    @ManyToMany(targetEntity = Taco.class)
+    @ManyToMany(targetEntity = Taco.class,fetch = FetchType.EAGER)
     private List<Taco> tacos = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -65,4 +67,5 @@ public class Order implements Serializable {
     void placedAt() {
         this.placedAt = new Date();
     }
+
 }

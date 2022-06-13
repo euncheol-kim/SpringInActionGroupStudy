@@ -1,40 +1,28 @@
-#spring:
-#  datasource:
-#    url: jdbc:h2:tcp://localhost/D:/db/h2/taco
-#    username: sa
-#    password:
-#    driver-class-name: org.h2.Driver
-#  devtools:
-#    livereload:
-#      enabled: true
-#  thymeleaf:
-#    cache: false
-#
-#  jpa:
-#    hibernate:
-#      ddl-auto: create-drop
-#    properties:
-#      hibernate:
-#        # show_sql: true
-#        format_sql: true
-##        default_batch_fetch_size : 100
-#    defer-datasource-initialization: true
-#
-#
-#logging.level:
-#  org.hibernate.SQL: debug
-##   org.hibernate.type: trace
-#server:
-#  port: 8080
-#
 spring:
   datasource:
-      url: jdbc:h2:tcp://localhost/D:/db/h2/taco
-      username: sa
-      password:
-      driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/D:/db/h2/taco
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    cache: false
+
   jpa:
     hibernate:
-      ddl-auto: none
-#
-#
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        # show_sql: true
+        format_sql: true
+#        default_batch_fetch_size : 100
+    defer-datasource-initialization: true
+
+
+logging.level:
+  org.hibernate.SQL: debug
+#   org.hibernate.type: trace
+server:
+  port: 8080

@@ -3,6 +3,7 @@ package springinaction.tacos;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,6 +12,7 @@ import springinaction.tacos.domain.entity.User;
 import springinaction.tacos.domain.repository.IngredientRepository;
 import springinaction.tacos.domain.repository.UserRepository;
 import springinaction.tacos.security.RegistrationForm;
+import springinaction.tacos.web.controller.OrderProps;
 
 import static springinaction.tacos.domain.entity.Ingredient.*;
 
