@@ -1,3 +1,4 @@
+
 # HTTP 통신과 관련된 Annotation들
 &nbsp;
 ## @RequestMapping (요청을 받을 때)
@@ -36,7 +37,7 @@ Class 레벨에 `@RequestMapping`을 걸어두고 Method레벨에 `@GetMapping` 
 ```java
 
 // RequestParam : String, Integer 과 같은 primitive 타입
-@GetMapping
+	@GetMapping
     public String ordersForUser(@AuthenticationPrincipal User user,Model model
     , @RequestParam int limit,@RequestParam int offset){
 
@@ -51,7 +52,7 @@ Class 레벨에 `@RequestMapping`을 걸어두고 Method레벨에 `@GetMapping` 
 
 // ModelAttribute : object 타입
 
-@GetMapping("/current")
+	@GetMapping("/current")
     public String orderForm(@AuthenticationPrincipal User user,@ModelAttribute Order order){
         if (order.getDeliveryName() == null) {
             order.setDeliveryName(user.getFullname());
@@ -82,7 +83,7 @@ Class 레벨에 `@RequestMapping`을 걸어두고 Method레벨에 `@GetMapping` 
 
 ```java
 
-@PostMapping // ModelAttribute 사용 (파라미터 형태로 보내질 때)
+	@PostMapping // ModelAttribute 사용 (파라미터 형태로 보내질 때)
     public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus, @AuthenticationPrincipal User user){
 
         if(errors.hasErrors()){
@@ -99,7 +100,7 @@ Class 레벨에 `@RequestMapping`을 걸어두고 Method레벨에 `@GetMapping` 
 
 ```java
 
-@PostMapping // RequestBody 사용 (Body에 데이터를 담아 보내질 때)
+	@PostMapping // RequestBody 사용 (Body에 데이터를 담아 보내질 때)
     public String processOrder(@Valid @RequestBody Order order, Errors errors, SessionStatus sessionStatus, @AuthenticationPrincipal User user){
 
         if(errors.hasErrors()){
@@ -133,7 +134,7 @@ API서버로서 데이터를 보낼 때는 `String` 형식이나 `Json` 형식�
 
 ```java
 
-@GetMapping("/list")
+	@GetMapping("/list")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public ArrayList<List<Taco>> getTacos(@AuthenticationPrincipal User user){
@@ -157,9 +158,9 @@ ex) [www.tacocloud.com/](http://www.taco.com/)taco/1
 
 ```java
 
-private final TacoRepository tacoRepository;
+	private final TacoRepository tacoRepository;
     @GetMapping("/{tacoNum}")
-		@ResponseBody
+	@ResponseBody
     public Taco getTaco(@PathVariable Long tacoNum){
 
         return tacoRepository.findById(tacoNum).get();
@@ -175,7 +176,7 @@ private final TacoRepository tacoRepository;
 
 ```java
 
-private final TacoRepository tacoRepository;
+	private final TacoRepository tacoRepository;
 
     @PostMapping
     public String processDesign(@Valid Taco design, Errors errors,RedirectAttributes redirectAttributes) {
