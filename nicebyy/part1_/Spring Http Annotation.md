@@ -77,7 +77,7 @@ Class 레벨에 `@RequestMapping`을 걸어두고 Method레벨에 `@GetMapping` 
 
 - HTTP `Post` 방식의 Method를 처리
 - 요청을 처리하는데 추가로 전달할 요청 관련 정보는 HTTP body에도 담아 전달
-- HTTP Form 에 입력한 값은 Get방식과 마찬가지로 쿼리스트링 방식으로에 전달해서 로직을 수행
+- HTTP Form 에 입력한 값은 Get방식과 마찬가지로 쿼리스트링 방식으로 전달해서 로직을 수행
 - `@RequestBody` 나 `@ModelAttribute`를 통해 전달 받은 요청 파라미터를 처리
 - 전달 받은 데이터는 MessageConverter와 자바 reflection을 통해 객체 바인딩이 가능
 
