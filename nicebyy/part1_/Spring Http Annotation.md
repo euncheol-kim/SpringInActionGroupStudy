@@ -1,7 +1,5 @@
-# Part1 추가내용
-
 # HTTP 통신과 관련된 Annotation들
-
+&nbsp;
 ## @RequestMapping (요청을 받을 때)
 
 > 특정 URL에 요청을 보내면 Controller에서 이를 처리하는데, URL과 HTTP Method에 따라 맞는 요청을 받아 처리한다.
@@ -23,16 +21,16 @@ public class OrderController {
 }
 ```
 
-Class 레벨에 @RequestMapping을 걸어두고 Method레벨에 @GetMapping 같이 특정 HTTP Method를 알 수 있는 애노테이션을 붙이는 방식이 선호되는 방식
-
+Class 레벨에 `@RequestMapping`을 걸어두고 Method레벨에 `@GetMapping` 같이 특정 HTTP Method를 알 수 있는 애노테이션을 붙이는 방식이 선호되는 방식
+&nbsp;
 ## HTTP Method 종류와 애노테이션
 
-### @GetMapping
+### `@GetMapping`
 
-- HTTP Get 방식의 Method를 처리
+- HTTP `Get` 방식의 Method를 처리
 - Get Method 요청을 처리하는데 추가로 전달할 요청 관련 정보는 쿼리파라미터로 같이 전달
 - HTTP Form 에 입력한 값은 쿼리 파라미터로 전달해서 view를 리턴하거나 정보를 리턴함
-- @RequestParam 이나 @ModelAttribute를 통해 전달 받은 요청 파라미터를 처리
+- `@RequestParam` 이나 `@ModelAttribute`를 통해 전달 받은 요청 파라미터를 처리
 
 ```java
 // RequestParam : String, Integer 과 같은 primitive 타입
@@ -70,13 +68,13 @@ Class 레벨에 @RequestMapping을 걸어두고 Method레벨에 @GetMapping 같�
         return "orderForm";
     }
 ```
+&nbsp;
+### `@PostMapping`
 
-### @PostMapping
-
-- HTTP Post 방식의 Method를 처리
+- HTTP `Post` 방식의 Method를 처리
 - 요청을 처리하는데 추가로 전달할 요청 관련 정보는 HTTP body에도 담아 전달
 - HTTP Form 에 입력한 값은 Get방식과 마찬가지로 쿼리스트링 방식으로에 전달해서 로직을 수행
-- @RequestBody 나 @ModelAttribute를 통해 전달 받은 요청 파라미터를 처리
+- `@RequestBody` 나 `@ModelAttribute`를 통해 전달 받은 요청 파라미터를 처리
 - 전달 받은 데이터는 MessageConverter와 자바 reflection을 통해 객체 바인딩이 가능
 
 ```java
@@ -108,23 +106,23 @@ Class 레벨에 @RequestMapping을 걸어두고 Method레벨에 @GetMapping 같�
         return "redirect:/";
     }
 ```
+&nbsp;
+### `@PutMapping`, `@PatchMapping`, `@DeleteMapping`
 
-### @PutMapping, @PatchMapping, @DeleteMapping
-
-- Html Form은 Get과 Post만 동작하지만, PostMapping 처럼 동작하는 HTTP Method들이 있음
-- PutMapping 과 PatchMapping은 수정관련 요청 Method인데 차이점은 부분수정vs전체수정
-- DeleteMapping은 말 그대로 데이터를 삭제할 때 요청하는 Method
-
-## @RequestParam
+- `Html Form`은 `Get`과 `Post`만 동작하지만, PostMapping 처럼 동작하는 HTTP Method들이 있음
+- `PutMapping` 과 `PatchMapping`은 수정관련 요청 Method인데 차이점은 부분수정vs전체수정
+- `DeleteMapping`은 말 그대로 데이터를 삭제할 때 요청하는 Method
+&nbsp;
+## `@RequestParam`
 
 - 요청 파라미터를 받는 방식 중 하나로 primitive 타입만 받는다.
 - 보낼때 파마미터 변수와 메소드의 파라미터 변수와 같으면 생략이 가능함
-
-## @ResponseBody (데이터를 보낼 때)
+&nbsp;
+## `@ResponseBody` (데이터를 보낼 때)
 
 ViewResolver를 통해 서버에서 view 를 렌더링해서 보여주는 응답을 할 수 있지만
 
-API서버로서 데이터를 보낼 때는 String 형식이나 Json 형식으로 body데이터를 보낼 수 있음
+API서버로서 데이터를 보낼 때는 `String` 형식이나 `Json` 형식으로 body데이터를 보낼 수 있음
 
  
 
@@ -143,9 +141,9 @@ API서버로서 데이터를 보낼 때는 String 형식이나 Json 형식으로
     }
 ```
 
-헤더 설정이 필요한 경우 HttpEnity 형태로 return 도 가능함
-
-## @PathVariable
+헤더 설정이 필요한 경우 `HttpEnity` 형태로 return 도 가능함
+&nbsp;
+## `@PathVariable`
 
 > 경로 변수라고도 하며 URL에 쿼리스트링 형식으로 데이터를 보내는 것과 다르게 URL 경로중 일부로 작용함.
 ex) [www.tacocloud.com/](http://www.taco.com/)taco/1
@@ -162,8 +160,8 @@ ex) [www.tacocloud.com/](http://www.taco.com/)taco/1
 ```
 
 위와 같이 쿼리 스트링 형식이 아닌 경로에 포함된 변수로서 사용이 가능
-
-## @RedirectAttributes
+&nbsp;
+## `@RedirectAttributes`
 
 > 요청한 데이터와 관련되거나 포함된 URL을 다시 redirect해서 보여줄때 사용한다. 예를들어 PRG (post redirect get ) 방식으로 다시 Get을 요청 하게 만들 때 사용함
 > 
@@ -183,15 +181,15 @@ ex) [www.tacocloud.com/](http://www.taco.com/)taco/1
         return "redirect:/taco/{tacoNum}";
     }
 ```
-
-## @ModelAttribute
+&nbsp;
+## `@ModelAttribute`
 
 > ModeAttribute는 object 와 String 을 서로 변환, 역변환을 도와주는 타입 컨버터가 적용되어 있다. RequestBody와 차이점은 ModelAttribute는 요청 파라미터에만 적용이 된다. 그래서 Order를 쓸 때도 애노테이션을 생략해도 동작이 가능했음. (RequestBody는 불가능)
 > 
 
-Jackson2HttpMessageConverter 로 인해 컨버전이 동작하는데 reflection 기반이기 때문에 객체에 getter만 선언해도 동작이 됨
+`Jackson2HttpMessageConverter` 로 인해 컨버전이 동작하는데 reflection 기반이기 때문에 객체에 `getter`만 선언해도 동작이 됨
 
-## 메소드레벨에서 @ModelAttribute 사용
+## 메소드레벨에서 `@ModelAttribute` 사용
 
 ```java
 @ModelAttribute("orders")
@@ -204,4 +202,4 @@ public List<Order> orders(@AuthenticationPrincipal User user){
 }
 ```
 
-@ModelAttribute를 만약 메소드레벨에서 사용하면 지정한 변수명은 모든 요청에대해 자동으로 model.setAttribute() 가 동작해서 model에 담기게 됨
+`@ModelAttribute`를 만약 메소드레벨에서 사용하면 지정한 변수명은 모든 요청에대해 자동으로 `model.setAttribute()` 가 동작해서 model에 담기게 됨
