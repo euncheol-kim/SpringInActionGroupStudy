@@ -3,16 +3,18 @@
 # Hateoas
 
 > 기존의 API 응답 방법에서 만약 특정 URL에 대한 요청을 했는데, 해당 URL이 바뀌었다면 404 NotFound를 반환하기 때문에 이를 동적으로 Hypermedia 링크를 삽입된 응답을 반환하기 위한 메커니즘이 Hateoas 이다.  
-
-**Hateoas**(Hypermedia As The Engine Of Application State)는 **Hypermedia를 Application의 상태를 관리하기 위해 도입된 개념**. 즉 , 클라이언트는 서버와 동적으로 상호작용이 가능하도록 해야함.  ⇒ **요청에 필요한 URI를 응답에 포함시켜 반환**
+>
+>**Hateoas**(Hypermedia As The Engine Of Application State)는 **Hypermedia를 Application의 상태를 관리하기 위해 도입된 개념**. 즉 , 클라이언트는 서버와 동적으로 상호작용이 가능하도록 해야함.  ⇒ **요청에 필요한 URI를 응답에 포함시켜 반환**
 > 
 
+&nbsp;
 ## RestAPI 구현레벨
 
 ![Untitled](https://user-images.githubusercontent.com/45655434/174455306-7d6087d3-5a95-4fb9-ad90-28d2e3dc7b82.png)
 
 RestAPI에도 구현 레벨이 있는데 **Hateoas 는 마지막 Level3** 의 단계이다. [[참고링크](https://velog.io/@younge/REST-API-%EC%84%B1%EC%88%99%EB%8F%84-%EB%AA%A8%EB%8D%B8-Maturity-Model-eqqyjqff)]
 
+&nbsp;
 ### 의존성 추가하기
 
 ```java
@@ -30,15 +32,19 @@ implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 | ResourceAssembler | RepresentationalModelAssembler |
 | ControllerLinkBuilder | WebMvcLinkBuilder |
 
+&nbsp;
+&nbsp;
 ## 리소스에 하이퍼링크 추가하기
 
 > 반환타입이 List 타입이므로 **CollectionModel.of()** 메서드를 이용해서 반환한다.
-
-**linkTo** 메서드 안에 특정 Controller를 지정함으로써 해당 Controller의 요청에 대한 삽입할 Link를 생성할 수 있다. ⇒ URI 가 변경되어도 변경된 URI에 대한 링크가 반환이 된다.
-
-linkTo 안에 methodOn을 이용해서 특정 메서드를 지정할 수도 있음
+>
+>&nbsp;
+>**linkTo** 메서드 안에 특정 Controller를 지정함으로써 해당 Controller의 요청에 대한 삽입할 Link를 생성할 수 있다. ⇒ URI 가 변경되어도 변경된 URI에 대한 링크가 반환이 된다.
+>
+>linkTo 안에 methodOn을 이용해서 특정 메서드를 지정할 수도 있음
 > 
 
+&nbsp;
 **DesignTacoApiController.class**
 
 ```java
@@ -114,14 +120,14 @@ public class DesignTacoApiController {
     }
 }
 ```
-
+&nbsp;
 ## 리소스 어셈블러
 
 > taco가 만약 여러개라면 반복문을 통해 여러개의 Link 객체를 만들어 삽입해야 하므로 **RepresentationalModelAssembler**를 구현한 Assembler를 만들어서 해결한다.
-
-게다가 TacoList를 보면 id값이 노출되어 있는데, 클라이언트 입장에서는 id값을 알 필요가 없기 때문에 별도의 **RepresentationalModel**을 상속받은 유틸리티 class를 생성하여 _self 링크가 이를 대체하게 한다.
+>
+>게다가 TacoList를 보면 id값이 노출되어 있는데, 클라이언트 입장에서는 id값을 알 필요가 없기 때문에 별도의 **RepresentationalModel**을 상속받은 유틸리티 class를 생성하여 _self 링크가 이를 대체하게 한다.
 > 
-
+&nbsp;
 **TacoResources.class**
 
 ```java
@@ -146,7 +152,7 @@ public class TacoResources extends RepresentationModel<TacoResources> {
 ```
 
 참고로, @Relation 으로 이름을 지정해주면 json안에 임의로 생성된 tacoList 변수명을 다른 변수명으로 지정해 줄 수 있음 
-
+&nbsp;
 **어셈블러 TacoResourceAssembler.class**
 
 ```java
@@ -175,7 +181,7 @@ public class TacoResourceAssembler implements RepresentationModelAssembler<Taco,
 단일 객체를 반환하는 toModel 에서는 taco ⇒ tacoResources로 변환하고 EntityModel에 링크를 삽입하여 반환한다.
 
 컬렉션을 반환하는 toCollectionModel 에서는 tacos ⇒ CollectionModel로 변환하는데, 컬렉션으로 반환될 수 있는 모든 경우를 지정하여 각각에 맞는 Link가 삽입될 수 있도록 한다. 
-
+&nbsp;
 **컨트롤러 DesignTacoApiController.class**
 
 ```java
@@ -213,7 +219,7 @@ public class DesignTacoApiController {
 ```
 
 컨트롤러에서는 어셈블러를 컴포넌트로 주입받아 사용하면 된다.
-
+&nbsp;
 ```json
 {
     "_embedded": {
@@ -266,12 +272,12 @@ public class DesignTacoApiController {
     }
 }
 ```
-
+&nbsp;
 ## 객체안의 객체에 링크를 삽입하기
 
 > Taco 안에 Ingredients 객체에 대한 링크도 나타낼 수 있는데 기존 TacoResources라는 유틸리티 클래스에 Ingrerdients의 어셈블러를 넣어줘서 추가적인 링크를 삽입할 수 있다.
 > 
-
+&nbsp;
 ```java
 @Getter
 @Setter
@@ -312,7 +318,7 @@ public class TacoResources extends RepresentationModel<TacoResources> {
 ```
 
 **List 타입의 컬렉션 필드 대신에 CollectionModel을 필드로 대체한다.**
-
+&nbsp;
 **컨트롤러 IngredientController.class**
 
 ```java
@@ -339,7 +345,7 @@ public class IngredientController {
 
 }
 ```
-
+&nbsp;
 **어셈블러 IngredientResourceAssembler.class**
 
 ```java
