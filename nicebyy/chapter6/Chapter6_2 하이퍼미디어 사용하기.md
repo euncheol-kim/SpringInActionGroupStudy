@@ -152,7 +152,9 @@ public class TacoResources extends RepresentationModel<TacoResources> {
 ```
 
 참고로, @Relation 으로 이름을 지정해주면 json안에 임의로 생성된 tacoList 변수명을 다른 변수명으로 지정해 줄 수 있음 
+
 &nbsp;
+
 **어셈블러 TacoResourceAssembler.class**
 
 ```java
@@ -181,7 +183,9 @@ public class TacoResourceAssembler implements RepresentationModelAssembler<Taco,
 단일 객체를 반환하는 toModel 에서는 taco ⇒ tacoResources로 변환하고 EntityModel에 링크를 삽입하여 반환한다.
 
 컬렉션을 반환하는 toCollectionModel 에서는 tacos ⇒ CollectionModel로 변환하는데, 컬렉션으로 반환될 수 있는 모든 경우를 지정하여 각각에 맞는 Link가 삽입될 수 있도록 한다. 
+
 &nbsp;
+
 **컨트롤러 DesignTacoApiController.class**
 
 ```java
@@ -219,6 +223,7 @@ public class DesignTacoApiController {
 ```
 
 컨트롤러에서는 어셈블러를 컴포넌트로 주입받아 사용하면 된다.
+
 &nbsp;
 ```json
 {
@@ -277,7 +282,9 @@ public class DesignTacoApiController {
 
 > Taco 안에 Ingredients 객체에 대한 링크도 나타낼 수 있는데 기존 TacoResources라는 유틸리티 클래스에 Ingrerdients의 어셈블러를 넣어줘서 추가적인 링크를 삽입할 수 있다.
 > 
+
 &nbsp;
+
 ```java
 @Getter
 @Setter
@@ -318,7 +325,9 @@ public class TacoResources extends RepresentationModel<TacoResources> {
 ```
 
 **List 타입의 컬렉션 필드 대신에 CollectionModel을 필드로 대체한다.**
+
 &nbsp;
+
 **컨트롤러 IngredientController.class**
 
 ```java
