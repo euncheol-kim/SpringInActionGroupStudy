@@ -57,3 +57,5 @@
 ### HATEOAS의 단점
 - 추가적인 네트워크 오버헤드가 있다. 데이터 전송사이즈가 커짐
 - 컨트롤러 복잡해짐
+
+#### 참고자료 :  https://grapeup.com/blog/how-to-build-hypermedia-api-with-spring-hateoas/# 
