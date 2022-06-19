@@ -2,7 +2,7 @@
 ### 🏁 목표
 - 1) HATEOAS란 
 - 2) HATEOAS의 목적
-- 3) HATEOAS의 
+- 3) HATEOAS의 장단점
 
 ## 💡 REST maturity model : REST 성숙도 모델
 ![image](https://user-images.githubusercontent.com/55049159/120597342-e235cf00-c47f-11eb-96e5-54a1d9b34c32.png)
