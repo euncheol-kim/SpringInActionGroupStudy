@@ -24,7 +24,8 @@ public class TacoResourceAssembler implements RepresentationModelAssembler<Taco,
     public CollectionModel<EntityModel<TacoResources>> toCollectionModel(Iterable<? extends Taco> tacos) {
         return RepresentationModelAssembler.super.toCollectionModel(tacos).add(
                         linkTo(DesignTacoApiController.class).withSelfRel(),
-                linkTo(methodOn(DesignTacoApiController.class).recentTacos()).withRel("recents")
+                linkTo(methodOn(DesignTacoApiController.class).recentTacos()).withRel("recents"),
+                linkTo(methodOn(RecentTacosController.class).recentTacos()).withRel("recents")
         );
     }
 

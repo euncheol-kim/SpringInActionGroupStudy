@@ -2,6 +2,7 @@ package springinaction.tacos.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Data
 @Entity
+@RestResource(rel="tacos",path="tacos")
 public class Taco {
 
     @Id

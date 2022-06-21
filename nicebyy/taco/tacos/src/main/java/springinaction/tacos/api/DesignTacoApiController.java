@@ -18,8 +18,8 @@ import java.util.Optional;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@RestController
-@RequestMapping(path = "/api/design",produces = "application/json")
+//@RestController
+//@RequestMapping(path = "/api/design",produces = "application/json")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class DesignTacoApiController {
@@ -27,6 +27,7 @@ public class DesignTacoApiController {
     private final TacoRepository tacoRepository;
     private final TacoResourceAssembler assembler;
 //    private final EntityLink entityLink;
+
 
 //    @GetMapping("/recent")
     public CollectionModel<Taco> recentTacosV1(){
@@ -51,6 +52,8 @@ public class DesignTacoApiController {
 
         return assembler.toCollectionModel(tacos);
     }
+
+
 
     @GetMapping
     public List<Taco> findAll(){

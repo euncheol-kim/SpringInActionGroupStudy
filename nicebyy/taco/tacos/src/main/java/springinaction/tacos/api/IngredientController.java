@@ -9,13 +9,13 @@ import springinaction.tacos.domain.repository.IngredientRepository;
 
 import java.util.Optional;
 
-@RestController
-@RequestMapping(path="/ingredients", produces="application/json")
+//@RestController
+//@RequestMapping(path="/api/ingredients", produces="application/json")
 @CrossOrigin(origins="*")
 @RequiredArgsConstructor
 public class IngredientController {
 
-    private IngredientRepository ingredientRepository;
+    private final IngredientRepository ingredientRepository;
 
     @GetMapping
     public Iterable<Ingredient> findAllIngredients() {

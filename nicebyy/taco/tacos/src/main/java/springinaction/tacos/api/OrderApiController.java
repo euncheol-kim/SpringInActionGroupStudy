@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import springinaction.tacos.domain.entity.Order;
 import springinaction.tacos.domain.repository.OrderRepository;
 
-@RestController
-@RequestMapping(path="/api/orders", produces="application/json")
+//@RestController
+//@RequestMapping(path="/api/orders", produces="application/json")
 @RequiredArgsConstructor
 @CrossOrigin(origins="*")
 public class OrderApiController {
