@@ -32,3 +32,35 @@ public class IngredientController {
 
     }
 }
+
+@Service
+@Slf4j
+@RequiredArgsConstructor
+public class TacoCloudClient {
+
+    private final RestTemplate rest;
+    private final Traverson traverson;
+
+    //
+    // POST examples
+    //
+    public Ingredient createIngredient(Ingredient ingredient) {
+        return rest.postForObject("http://localhost:8080/ingredients",
+                ingredient, Ingredient.class);
+    }
+
+    // 생성된 URI 반환
+    public URI createIngredient(Ingredient ingredient) {
+        return rest.postForLocation("http://localhost:8080/ingredients",
+                ingredient, Ingredient.class);
+    }
+
+    public Ingredient createIngredient(Ingredient ingredient) {
+        ResponseEntity<Ingredient> responseEntity =
+                rest.postForEntity("http://localhost:8080/ingredients",
+                        ingredient,
+                        Ingredient.class);
+        log.info("New resource created at " + responseEntity.getHeaders().getLocation());
+        return responseEntity.getBody();
+    }
+}

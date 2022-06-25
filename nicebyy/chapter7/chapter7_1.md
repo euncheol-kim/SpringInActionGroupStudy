@@ -3,25 +3,26 @@
 # RestTemplate
 
 > **RestTemplate** 은 스프링3.0 이상 부터 지원하는 HTTP 통신,  그 중 **RestAPI 를 기준**으로 요청을 쉽게 할 수 있게 도와주는 **동기방식의 Rest 클라이언트**.
-Hateoas 의 하이퍼 미디어 링크를 삽입할 수 있게 도와주는 Traverson과 함께 사용된다. 
-
-Spring 5.0 부터는 비동기 방식도 지원하는 WebClient를 사용한다.
+>Hateoas 의 하이퍼 미디어 링크를 삽입할 수 있게 도와주는 Traverson과 함께 사용된다. 
+>
+>Spring 5.0 부터는 비동기 방식도 지원하는 WebClient를 사용한다.
 > 
 
-![Untitled 1](https://user-images.githubusercontent.com/45655434/175786725-0766f308-2032-45c8-9326-85b59b0a602b.png)
+![Untitled](https://user-images.githubusercontent.com/45655434/175786742-8a70837b-8fa3-4c03-b3b9-c6ef1913f18b.png)
 
 
 **(서비스 ⇒  other 서비스) 로 필요한 데이터를 받아올 때 사용 하며 예를들어,
 받아온 JSON 타입의 데이터를 Jackson2 MessageConverter을 통해 객체에 바인딩을 하여 우리가 쓸 수 있는 Object 형태로 받아 온다.**
+&nbsp;
 
 ## RestTemplate 동작원리
 
-![Untitled 2](https://user-images.githubusercontent.com/45655434/175786731-f7ca0e64-3287-4bcb-8188-99d7b56ab591.png)
+![Untitled 1](https://user-images.githubusercontent.com/45655434/175786725-0766f308-2032-45c8-9326-85b59b0a602b.png)
 
 **RestTemplate ⇒ HttpMessageConverter ⇒ RequestEntity ⇒ HttpMessageConverter ⇒ ResponseEntity ⇒ Object**
 
+&nbsp;
 참고) 
-
 **RestTemplate 생성자**
 
 ```java
@@ -55,6 +56,7 @@ if (jackson2Present) {
 }
 ```
 
+&nbsp;
 **RestTemplate 메서드**
 
 ```java
@@ -92,11 +94,14 @@ if (jackson2Present) {
 
 **RestTemplate 으로 요청을 보내면 필요한 처리들을 백그라운드에서 Callback 메서드들을 호출하여 처리 후 데이터를 받아오는 방식으로 동작.**
 
+&nbsp;
 ## RestTemplate으로 Rest 엔드포인트 사용하기
 
 > **RestTemplate** 클라이언트는 다른 API에 요청을 하기 위한 12개의 메서드들이 있다. 
 파라미터들이 다른 오버로딩 된 메서드들을 합치면 총 41개의 메서드들이 있다.
 > 
+
+&nbsp;
 
 | Method | Description | HTTP Method | ResponseType |
 | --- | --- | --- | --- |
@@ -113,7 +118,9 @@ if (jackson2Present) {
 
 **기본적으로 HTTP Method 에 맞는 method 들이 하나씩 있으며 , exchange 와 excute 는 더 넓은 범위의 모든 요청을 수행할 수 있는 low 레벨 메서드이다.** 
 
-**기본적으로 RestTemplate Bean 을 주입받아 사용하는 방식으로 사용한다.**
+&nbsp;
+
+** RestTemplate Bean 을 주입받아 사용할 수도 있다.**
 
 ### GET 예시
 
@@ -123,45 +130,45 @@ if (jackson2Present) {
 @RequiredArgsConstructor
 public class TacoCloudClient {
 
-  private final RestTemplate rest;
-  private final Traverson traverson;
+    private final RestTemplate rest;
+    private final Traverson traverson;
 
-  //
-  // GET examples
-  //
+    //
+    // GET examples
+    //
 
-  public Ingredient getIngredientById(String ingredientId) {
-    return rest.getForObject("http://localhost:8080/ingredients/{id}",
-                             Ingredient.class, ingredientId);
-  }
+    public Ingredient getIngredientById(String ingredientId) {
+        return rest.getForObject("http://localhost:8080/ingredients/{id}",
+                Ingredient.class, ingredientId);
+    }
 
-	// 모든 요청을 수행할 수 있는 메서드 이므로 요청 method 도 같이 파라미터에 지정
-  public List<Ingredient> getAllIngredients() {
-    return rest.exchange("http://localhost:8080/ingredients",
-            HttpMethod.GET, null, new ParameterizedTypeReference<List<Ingredient>>() {})
-        .getBody();
-  }
+    // 모든 요청을 수행할 수 있는 메서드 이므로 요청 method 도 같이 파라미터에 지정
+    public List<Ingredient> getAllIngredients() {
+        return rest.exchange("http://localhost:8080/ingredients",
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<Ingredient>>() {})
+                .getBody();
+    }
 
-	// Map 으로 키 지정
-	public Ingredient getIngredientById(String ingredientId) {
-	        Map<String, String> urlVariables = new HashMap<>();
-	        urlVariables.put("id", ingredientId);
-	        return rest.getForObject("http://localhost:8080/ingredients/{id}",
-	                Ingredient.class, urlVariables);
-	}
+    // Map 으로 키 지정
+    public Ingredient getIngredientById(String ingredientId) {
+        Map<String, String> urlVariables = new HashMap<>();
+        urlVariables.put("id", ingredientId);
+        return rest.getForObject("http://localhost:8080/ingredients/{id}",
+                Ingredient.class, urlVariables);
+    }
 
-	// URI 객체를 생성하여 전송
-	public Ingredient getIngredientById(String ingredientId) {
+    // URI 객체를 생성하여 전송
+    public Ingredient getIngredientById(String ingredientId) {
         Map<String, String> urlVariables = new HashMap<>();
         urlVariables.put("id", ingredientId);
         URI url = UriComponentsBuilder
                 .fromHttpUrl("http://localhost:8080/ingredients/{id}")
                 .build(urlVariables);
         return rest.getForObject(url, Ingredient.class);
-  }
+    }
 
-	// header 와 body 정보가 필요할 때 요청 후 ResponseEntity 로 반환
-	public Ingredient getIngredientById(String ingredientId) {
+    // header 와 body 정보가 필요할 때 요청 후 ResponseEntity 로 반환
+    public Ingredient getIngredientById(String ingredientId) {
         ResponseEntity<Ingredient> responseEntity =
                 rest.getForEntity("http://localhost:8080/ingredients/{id}",
                         Ingredient.class, ingredientId);
@@ -171,6 +178,8 @@ public class TacoCloudClient {
 }
 ```
 
+&nbsp;
+
 ### Post 예시
 
 ```java
@@ -179,33 +188,35 @@ public class TacoCloudClient {
 @RequiredArgsConstructor
 public class TacoCloudClient {
 
-  private final RestTemplate rest;
-  private final Traverson traverson;
+    private final RestTemplate rest;
+    private final Traverson traverson;
 
-  //
-  // POST examples
-  //
-  public Ingredient createIngredient(Ingredient ingredient) {
-    return rest.postForObject("http://localhost:8080/ingredients",
-        ingredient, Ingredient.class);
-  }
-	
-	// 생성된 URI 반환
-	public URI createIngredient(Ingredient ingredient) {
+    //
+    // POST examples
+    //
+    public Ingredient createIngredient(Ingredient ingredient) {
+        return rest.postForObject("http://localhost:8080/ingredients",
+                ingredient, Ingredient.class);
+    }
+
+    // 생성된 URI 반환
+    public URI createIngredient(Ingredient ingredient) {
         return rest.postForLocation("http://localhost:8080/ingredients",
                 ingredient, Ingredient.class);
-  }
+    }
 
-  public Ingredient createIngredient(Ingredient ingredient) {
+    public Ingredient createIngredient(Ingredient ingredient) {
         ResponseEntity<Ingredient> responseEntity =
                 rest.postForEntity("http://localhost:8080/ingredients",
                         ingredient,
                         Ingredient.class);
         log.info("New resource created at " + responseEntity.getHeaders().getLocation());
         return responseEntity.getBody();
-   }
+    }
 }
 ```
+
+&nbsp;
 
 ### Put 예시
 
@@ -227,6 +238,8 @@ public class TacoCloudClient {
   }
 }
 ```
+
+&nbsp;
 
 ### Delete 예시
 
@@ -250,6 +263,8 @@ public class TacoCloudClient {
 }
 ```
 
+&nbsp;
+
 # RestTemplate의 한계?
 
 > 스프링 5.0 부터는 **WebClient**를 지원하고, 이를 사용하도록 권고하고 있다. 그 동안 비동기 방식은 AsyncRestTemplate이 지원해 주었는데 deprecated되 었다. 
@@ -266,7 +281,7 @@ public class TacoCloudClient {
 
 **RestTemplate 과 WebClient의 Blocking 이나 Non-Blocking 이냐 에 따라 성능차이가 동시 사용자가 많아 질수록 급격하게 차이가 난다고 한다.**
 
-![Untitled](https://user-images.githubusercontent.com/45655434/175786742-8a70837b-8fa3-4c03-b3b9-c6ef1913f18b.png)
+![Untitled 2](https://user-images.githubusercontent.com/45655434/175786731-f7ca0e64-3287-4bcb-8188-99d7b56ab591.png)
 
 > Boot 1은 WebClient , Boot 2 는 SpringMVC의 RestTemplate 이다.
 
