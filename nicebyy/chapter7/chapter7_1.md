@@ -112,7 +112,7 @@ if (jackson2Present) {
 | headForHeaders(…) | HTTP Head 요청을 전송하며 헤더 정보를 반환 | HEAD | HttpHeaders |
 | optionsForAllow(…) | HTTP Option 요청을 전송하며 Allow 헤더를 반환 ( HTTP 헤더 정보) | OPTIONS | Set<HttpMethod> |
 | patchForObject(…) | HTTP Patch 요청을 전송하며 결과 객체를 반환 | PATCH | <T> T |
-| postFor[Entity/Object](…) | HTTP Post 를 요청을 수행하며 [ResponseEntity / Object] 를 반환 | Post | ResponseEntity<T> / <T> T |
+| postFor[Entity/Object] (…) | HTTP Post 를 요청을 수행하며 [ResponseEntity / Object] 를 반환 | Post | ResponseEntity<T> / <T> T |
 | PostForLocation(…) | HTTP Post 를 수행한 후 생성되는 URI을 반환 | Post | URI |
 | Put(…) | HTTP Put 을 수행 | PUT | void |
 
