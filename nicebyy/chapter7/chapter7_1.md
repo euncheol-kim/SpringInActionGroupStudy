@@ -22,7 +22,7 @@
 **RestTemplate ⇒ HttpMessageConverter ⇒ RequestEntity ⇒ HttpMessageConverter ⇒ ResponseEntity ⇒ Object**
 
 &nbsp;
-참고) 
+**참고)** 
 **RestTemplate 생성자**
 
 ```java
@@ -119,8 +119,7 @@ if (jackson2Present) {
 **기본적으로 HTTP Method 에 맞는 method 들이 하나씩 있으며 , exchange 와 excute 는 더 넓은 범위의 모든 요청을 수행할 수 있는 low 레벨 메서드이다.** 
 
 &nbsp;
-
-** RestTemplate Bean 을 주입받아 사용할 수도 있다.**
+**RestTemplate Bean 을 주입받아 사용할 수도 있다.**
 
 ### GET 예시
 
