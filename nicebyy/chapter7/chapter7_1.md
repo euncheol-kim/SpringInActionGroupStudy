@@ -21,8 +21,9 @@
 
 **RestTemplate ⇒ HttpMessageConverter ⇒ RequestEntity ⇒ HttpMessageConverter ⇒ ResponseEntity ⇒ Object**
 
-&nbsp;
+
 **참고)** 
+&nbsp;
 **RestTemplate 생성자**
 
 ```java
