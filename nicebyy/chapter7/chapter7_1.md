@@ -11,7 +11,7 @@
 ![Untitled](https://user-images.githubusercontent.com/45655434/175786742-8a70837b-8fa3-4c03-b3b9-c6ef1913f18b.png)
 
 
-**(서비스 ⇒  other 서비스) 로 필요한 데이터를 받아올 때 사용 하며 예를들어,
+**(서비스 ⇒  other 서비스) 로 필요한 데이터를 받아올 때 사용 하며 예를들어
 받아온 JSON 타입의 데이터를 Jackson2 MessageConverter을 통해 객체에 바인딩을 하여 우리가 쓸 수 있는 Object 형태로 받아 온다.**
 &nbsp;
 
