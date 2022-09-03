@@ -1,13 +1,17 @@
 package springinaction.tacos.api;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.hateoas.client.Traverson;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import springinaction.tacos.domain.entity.Ingredient;
 import springinaction.tacos.domain.repository.IngredientRepository;
 
+import java.net.URI;
 import java.util.Optional;
 
 //@RestController
